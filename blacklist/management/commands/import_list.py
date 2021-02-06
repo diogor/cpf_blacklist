@@ -1,3 +1,4 @@
+import re
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
 from django.core.management.base import BaseCommand
@@ -24,7 +25,8 @@ class Command(BaseCommand):
                 self.style.ERROR(f'File not found. ({b_list})')
             )
         for cpf in lines:
-            cpf = cpf.strip("\n")
+            cpf_line = cpf.strip("\n")
+            cpf = re.sub("[-\.]", "", cpf_line)
             try:
                 validate_CPF(cpf)
                 ListEntry.objects.create(cpf=cpf)
