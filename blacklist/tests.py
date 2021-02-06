@@ -12,7 +12,7 @@ class APITests(APITestCase):
         User = get_user_model()
         self.test_user = User.objects.create_user(
             "testuser", "test@test.com", "testpass"
-        ) 
+        )
         self.test_user.user_permissions.add(
             Permission.objects.get(
                 codename='add_listentry',
@@ -80,19 +80,22 @@ class APITests(APITestCase):
 
     def test_check_cpf(self):
         # not in list
-        response = self.client.get(reverse('listentry-detail',
-                                           kwargs={"cpf": self.valid_data["cpf"]}))
+        response = self.client.get(
+            reverse('listentry-detail',
+                    kwargs={"cpf": self.valid_data["cpf"]}))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(ListEntry.STATUS_ALLOW, response.data['status'])
 
         # in list
         response = self.client.get(
-            reverse('listentry-detail', kwargs={"cpf": self.valid_data1["cpf"]}))
+            reverse('listentry-detail',
+                    kwargs={"cpf": self.valid_data1["cpf"]}))
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(ListEntry.STATUS_DENY, response.data['status'])
 
         # invalid
         response = self.client.get(
-            reverse('listentry-detail', kwargs={"cpf": self.invalid_data1["cpf"]}))
+            reverse('listentry-detail',
+                    kwargs={"cpf": self.invalid_data1["cpf"]}))
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertTrue('detail' in response.data.keys())
