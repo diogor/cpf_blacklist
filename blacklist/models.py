@@ -3,6 +3,9 @@ from .validators import validate_CPF
 
 
 class ListEntry(models.Model):
+    STATUS_ALLOW = "ALLOW"
+    STATUS_DENY = "DENY"
+
     cpf = models.CharField(max_length=14, unique=True,
                            validators=[validate_CPF])
 

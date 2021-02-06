@@ -17,9 +17,19 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView, TokenRefreshView
-)
+from rest_framework import routers
+from rest_framework_simplejwt.views import (TokenObtainPairView,
+                                            TokenRefreshView)
+from blacklist.views import ListEntryViewSet
+
+
+admin.site.site_title = 'CPF Blacklist Admin'
+admin.site.site_header = 'CPF Blacklist'
+admin.site.index_title = 'Admin'
+
+
+router = routers.SimpleRouter()
+router.register(r'cpf', ListEntryViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,3 +42,5 @@ urlpatterns = [
     ) + static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )
+
+urlpatterns += router.urls
