@@ -26,7 +26,7 @@ class Command(BaseCommand):
             )
         for cpf in lines:
             cpf_line = cpf.strip("\n")
-            cpf = re.sub("[-\.]", "", cpf_line)
+            cpf = re.sub(r"[-\.]", "", cpf_line)
             try:
                 validate_CPF(cpf)
                 ListEntry.objects.create(cpf=cpf)
