@@ -1,12 +1,13 @@
 import re
 from django.core.validators import EMPTY_VALUES
 from django.forms import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 
 cpf_error_messages = {
-    'invalid': "CPF Inválido.",
-    'digits_only': "Somente é permitido números.",
-    'max_digits': "Este campo requer 11 dígitos",
+    'invalid': _("Invalid CPF."),
+    'digits_only': _("Only numbers and separators are allowed."),
+    'max_digits': _("This field requires 11 digits."),
 }
 
 
