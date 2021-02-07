@@ -6,7 +6,7 @@ class ListEntry(models.Model):
     STATUS_ALLOW = "ALLOW"
     STATUS_DENY = "DENY"
 
-    cpf = models.CharField(max_length=14, unique=True,
+    cpf = models.CharField(max_length=11, unique=True,
                            validators=[validate_CPF])
 
     def __str__(self):
