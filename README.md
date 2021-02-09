@@ -15,7 +15,10 @@
 
 ## Rodando
 ### *Ignore o prefixo "```pipenv run```" se estiver usando diretamente o virtualenv*
-
+### Importando a lista de deny
+```bash
+pipenv run python manage.py import_list [ARQUIVO]
+```
 ### Sincronizando o banco de dados:
 ```bash
 pipenv run python manage.py migrate
