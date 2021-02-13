@@ -1,0 +1,8 @@
+django
+djangorestframework
+environs
+dj-database-url
+dj-email-url
+gunicorn
+djangorestframework-simplejwt
+django-cors-headers
